@@ -27,9 +27,27 @@ class TodoContainer extends PureComponent {
     };
   }
 
-  // eslint-disable-next-line class-methods-use-this
   handleChange = (id) => {
-    console.log('Clicked', id);
+    this.setState((prevSate) => ({
+      todos: prevSate.todos.map((todo) => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            completed: !todo.completed,
+          };
+        }
+        return todo;
+      }),
+    }));
+  };
+
+  delTodo = (id) => {
+    const { todos } = this.state;
+    this.setState({
+      todos: [
+        ...todos.filter((todo) => todo.id !== id),
+      ],
+    });
   };
 
   render() {
@@ -37,7 +55,7 @@ class TodoContainer extends PureComponent {
     return (
       <div>
         <Header />
-        <TodoList todos={todos} handleChange={this.handleChange} />
+        <TodoList todos={todos} handleChange={this.handleChange} delTodo={this.delTodo} />
       </div>
     );
   }
