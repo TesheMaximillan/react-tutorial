@@ -46,9 +46,7 @@ class TodoContainer extends PureComponent {
   delTodo = (id) => {
     const { todos } = this.state;
     this.setState({
-      todos: [
-        ...todos.filter((todo) => todo.id !== id),
-      ],
+      todos: [...todos.filter((todo) => todo.id !== id)],
     });
   };
 
@@ -64,6 +62,21 @@ class TodoContainer extends PureComponent {
     });
   };
 
+  setUpdate = (updatedTitle, id) => {
+    const { todos } = this.state;
+    this.setState({
+      todos: todos.map((todo) => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            title: updatedTitle,
+          };
+        }
+        return todo;
+      }),
+    });
+  };
+
   render() {
     const { todos } = this.state;
     return (
@@ -71,7 +84,12 @@ class TodoContainer extends PureComponent {
         <div className="inner">
           <Header />
           <InputTodo addTodoItem={this.addTodoItem} />
-          <TodoList todos={todos} handleChange={this.handleChange} delTodo={this.delTodo} />
+          <TodoList
+            todos={todos}
+            handleChange={this.handleChange}
+            delTodo={this.delTodo}
+            setUpdate={this.setUpdate}
+          />
         </div>
       </div>
     );
