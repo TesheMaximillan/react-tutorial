@@ -26,7 +26,6 @@ class InputTodo extends PureComponent {
         title: '',
       });
     } else {
-      alert('Please Add an Item');
       this.setState({
         title: '',
       });

@@ -9,24 +9,24 @@ class TodoContainer extends PureComponent {
     super(props);
 
     this.state = {
-      todos: [
-        {
-          id: uuidv4(),
-          title: 'Setup development environment',
-          completed: true,
-        },
-        {
-          id: uuidv4(),
-          title: 'Develop website and add content',
-          completed: false,
-        },
-        {
-          id: uuidv4(),
-          title: 'Deploy to live server',
-          completed: false,
-        },
-      ],
+      todos: [],
     };
+  }
+
+  componentDidMount() {
+    const loadedTodos = JSON.parse(localStorage.getItem('todos'));
+    if (loadedTodos) {
+      this.setState({
+        todos: loadedTodos,
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevSate) {
+    const { todos } = this.state;
+    if (prevSate.todos !== todos) {
+      localStorage.setItem('todos', JSON.stringify(todos));
+    }
   }
 
   handleChange = (id) => {

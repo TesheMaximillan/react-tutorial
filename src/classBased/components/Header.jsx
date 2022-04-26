@@ -1,5 +1,6 @@
 import React from 'react';
 
+// functional component
 function Header() {
   const headerStyle = {
     padding: '20px 0',
