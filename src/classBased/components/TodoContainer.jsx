@@ -60,7 +60,6 @@ class TodoContainer extends PureComponent {
     this.setState({
       todos: [...todos, newTodo],
     });
-    localStorage.setItem('todos', JSON.stringify(todos));
   };
 
   setUpdate = (updatedTitle, id) => {
