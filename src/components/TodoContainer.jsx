@@ -13,10 +13,11 @@ class TodoContainer extends PureComponent {
     };
   }
 
-  componentDidMount() {
-    fetch('https://jsonplaceholder.typicode.com/todos?_limit=10')
-      .then((response) => response.json())
-      .then((data) => this.setState({ todos: data }));
+  componentDidUpdate(prevProps, prevSate) {
+    const { todos } = this.state;
+    if (prevSate.todos !== todos) {
+      localStorage.setItem('todos', JSON.stringify(todos));
+    }
   }
 
   handleChange = (id) => {
