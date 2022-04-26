@@ -70,10 +70,6 @@ body {
   margin-top: 2px;
 }
 
-.navBar {
-  cursor: pointer;
-}
-
 .active {
   color: orangered;
   text-decoration: none;
@@ -82,6 +78,7 @@ body {
 /* sidebar Nav */
 
 .navBar {
+  cursor: pointer;
   position: relative;
 }
 
@@ -90,7 +87,7 @@ body {
   left: 40px;
   top: 40px;
   z-index: 10;
-  background: transparent;;
+  background: transparent;
   border: none;
   cursor: pointer;
 }
