@@ -13,6 +13,15 @@ class TodoContainer extends PureComponent {
     };
   }
 
+  componentDidMount() {
+    const loadedTodos = JSON.parse(localStorage.getItem('todos'));
+    if (loadedTodos) {
+      this.setState({
+        todos: loadedTodos,
+      });
+    }
+  }
+
   componentDidUpdate(prevProps, prevSate) {
     const { todos } = this.state;
     if (prevSate.todos !== todos) {
