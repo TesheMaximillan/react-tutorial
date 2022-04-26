@@ -6,11 +6,10 @@ import TodoList from './TodoList';
 
 function TodoContainer() {
   const getInitialTodos = () => {
-    const savedTodos = JSON.parse(localStorage.getItem('todos'));
+    const temp = localStorage.getItem('todos');
+    const savedTodos = JSON.parse(temp);
     return savedTodos || [];
   };
-
-  const { todos, setTodos } = useState(getInitialTodos());
 
   // useEffect(() => {
   //   const loadedTodos = JSON.parse(localStorage.getItem('todos'));
@@ -18,6 +17,8 @@ function TodoContainer() {
   //     setTodos(loadedTodos);
   //   }
   // }, []);
+
+  const [todos, setTodos] = useState(getInitialTodos());
 
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(todos));
@@ -45,9 +46,7 @@ function TodoContainer() {
       title,
       completed: false,
     };
-    setTodos({
-      todos: [...todos, newTodo],
-    });
+    setTodos([...todos, newTodo]);
   };
 
   const setUpdate = (updatedTitle, id) => {
@@ -61,6 +60,7 @@ function TodoContainer() {
       }),
     );
   };
+
   return (
     <div className="container">
       <div className="inner">
